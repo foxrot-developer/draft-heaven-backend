@@ -1,6 +1,7 @@
 const express = require('express');
 
 const HttpError = require('./helpers/http-errors');
+const userRoutes = require('./routes/user-routes');
 
 const app = express();
 
@@ -13,7 +14,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// app.use('/api/admin', adminRoutes);
+app.use('/api/user', userRoutes);
 
 
 app.use((req, res, next) => {
