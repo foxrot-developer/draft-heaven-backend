@@ -4,6 +4,8 @@ const { check } = require('express-validator');
 const userController = require('../controllers/user-controller');
 const router = express.Router();
 
+router.get('/all-players', userController.getAllPlayers);
+
 router.post('/register', [
     check('name').not().isEmpty(),
     check('password').not().isEmpty(),

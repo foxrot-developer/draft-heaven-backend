@@ -75,5 +75,18 @@ const userLogin = (req, res, next) => {
     });
 };
 
+const getAllPlayers = (req, res, next) => {
+    const getPlayersQuery = "SELECT * FROM players WHERE Deleted=? AND Position1 IN (?, ?);"
+    db.query(getPlayersQuery, [0, 'RP', 'SP'], (err, response) => {
+        if (err) {
+            console.log({ err });
+            return next(new HttpError("Error fetching data", 500));
+        }
+
+        res.json({ players: response });
+    });
+};
+
 exports.registerUser = registerUser;
 exports.userLogin = userLogin;
+exports.getAllPlayers = getAllPlayers;
