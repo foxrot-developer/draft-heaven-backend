@@ -4,7 +4,11 @@ const { check } = require('express-validator');
 const userController = require('../controllers/user-controller');
 const router = express.Router();
 
-router.get('/all-players', userController.getAllPlayers);
+router.get('/all-players/:playerType', userController.getAllPlayers);
+
+router.get('/extended-search', userController.extendedSearch);
+
+router.get('/player-yearly-stats-batting/:playerRef', userController.playerYearlyStatsBatting);
 
 router.post('/register', [
     check('name').not().isEmpty(),
